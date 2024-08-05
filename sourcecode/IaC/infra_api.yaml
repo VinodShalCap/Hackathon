@@ -6,14 +6,14 @@ Resources:
     Type: 'AWS::ApiGateway::RestApi'
     Properties:
       Name: 'Product API'
-      Description: '{Product API with Mock Response'
+      Description: 'Product API with Mock Response'
 
   MyResource:
     Type: 'AWS::ApiGateway::Resource'
     Properties:
       RestApiId: !Ref ProductAPI
       ParentId: !GetAtt ProductAPI.RootResourceId
-      PathPart: 'mock'
+      PathPart: 'mockproducts'
 
   MyMethod:
     Type: 'AWS::ApiGateway::Method'
@@ -45,4 +45,4 @@ Resources:
 Outputs:
   ApiUrl:
     Description: 'URL of the API'
-    Value: !Sub 'https://${ProductAPI}.execute-api.${AWS::Region}.amazonaws.com/prod/mock'
+    Value: !Sub 'https://${ProductAPI}.execute-api.${AWS::Region}.amazonaws.com/prod/mockproducts'
