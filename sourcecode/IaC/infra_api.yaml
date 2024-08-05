@@ -1,0 +1,48 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'API Gateway with Mock Response'
+
+Resources:
+  ProductAPI:
+    Type: 'AWS::ApiGateway::RestApi'
+    Properties:
+      Name: 'Product API'
+      Description: '{Product API with Mock Response'
+
+  MyResource:
+    Type: 'AWS::ApiGateway::Resource'
+    Properties:
+      RestApiId: !Ref ProductAPI
+      ParentId: !GetAtt ProductAPI.RootResourceId
+      PathPart: 'mock'
+
+  MyMethod:
+    Type: 'AWS::ApiGateway::Method'
+    Properties:
+      RestApiId: !Ref ProductAPI
+      ResourceId: !Ref MyResource
+      HttpMethod: GET
+      AuthorizationType: NONE
+      Integration:
+        Type: MOCK
+        RequestTemplates:
+          application/json: '{"statusCode": 200}'
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseTemplates:
+              application/json: '{"products":[{"id":"prod001","name":"Wireless Bluetooth Headphones","price":99.99,"discount":15,"imageUrl":"https://example.com/images/headphones.jpg"},{"id":"prod002","name":"Smartphone XYZ Model","price":799.99,"discount":10,"imageUrl":"https://example.com/images/smartphone.jpg"},{"id":"prod003","name":"4K Smart TV 55-inch","price":549.99,"discount":20,"imageUrl":"https://example.com/images/smart-tv.jpg"},{"id":"prod004","name":"Laptop Pro 15","price":1299.99,"discount":5,"imageUrl":"https://example.com/images/laptop.jpg"},{"id":"prod005","name":"Wireless Gaming Mouse","price":59.99,"discount":0,"imageUrl":"https://example.com/images/gaming-mouse.jpg"}]}'
+      MethodResponses:
+        - StatusCode: 200
+          ResponseModels:
+            application/json: 'Empty'
+
+  ApiDeployment:
+    Type: 'AWS::ApiGateway::Deployment'
+    DependsOn: MyMethod
+    Properties:
+      RestApiId: !Ref ProductAPI
+      StageName: 'prod'
+
+Outputs:
+  ApiUrl:
+    Description: 'URL of the API'
+    Value: !Sub 'https://${ProductAPI}.execute-api.${AWS::Region}.amazonaws.com/prod/mock'

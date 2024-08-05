@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Product Details</title>
+  <style>
+    .product {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Product Details</h1>
+  <div id="product-container"></div>
+
+  <script>
+    // Replace with your API Gateway Invoke URL
+    const apiUrl = 'https://vtm52hl242.execute-api.us-east-1.amazonaws.com/prod/mock';
+
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        const productContainer = document.getElementById('product-container');
+        const products = data.products;
+
+        products.forEach(product => {
+          const productDiv = document.createElement('div');
+          productDiv.classList.add('product');
+
+          const nameElement = document.createElement('h2');
+          nameElement.textContent = product.name;
+          productDiv.appendChild(nameElement);
+
+          const imageElement = document.createElement('img');
+          imageElement.src = product.imageUrl;
+          productDiv.appendChild(imageElement);
+
+          const priceElement = document.createElement('p');
+          priceElement.textContent = `Price: $${product.price}`;
+          productDiv.appendChild(priceElement);
+
+          const discountElement = document.createElement('p');
+          discountElement.textContent = `Discount: ${product.discount}%`;
+          productDiv.appendChild(discountElement);
+
+          productContainer.appendChild(productDiv);
+        });
+      })
+      .catch(error => console.error('Error:', error));
+  </script>
+</body>
+</html>
