@@ -3,70 +3,52 @@
 <head>
   <title>Product Details</title>
   <style>
-    .product-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
     .product {
       border: 1px solid #ccc;
       padding: 10px;
-      margin: 10px;
-      max-width: 300px;
-      text-align: center;
-    }
-
-    .product img {
-      max-width: 100%;
-      height: auto;
+      margin-bottom: 10px;
     }
   </style>
 </head>
 <body>
   <h1>Product Details</h1>
-  <div id="product-container" class="product-container"></div>
+  <div id="product-container"></div>
 
   <script>
     // Replace with your API Gateway Invoke URL
-    const apiUrl = 'https://1p3wxt08mb.execute-api.eu-west-2.amazonaws.com/dev/products';
+    const apiUrl = 'https://vtm52hl242.execute-api.us-east-1.amazonaws.com/prod/mock';
 
     fetch(apiUrl)
       .then(response => response.json())
       .then(data => {
         const productContainer = document.getElementById('product-container');
         const products = data.products;
-
+ 
         products.forEach(product => {
           const productDiv = document.createElement('div');
           productDiv.classList.add('product');
-
+ 
           const nameElement = document.createElement('h2');
           nameElement.textContent = product.name;
           productDiv.appendChild(nameElement);
-
+ 
           const imageElement = document.createElement('img');
           imageElement.src = product.imageUrl;
           productDiv.appendChild(imageElement);
-
+ 
           const priceElement = document.createElement('p');
           priceElement.textContent = `Price: $${product.price}`;
           productDiv.appendChild(priceElement);
-
+ 
           const discountElement = document.createElement('p');
           discountElement.textContent = `Discount: ${product.discount}%`;
           productDiv.appendChild(discountElement);
-
+ 
           productContainer.appendChild(productDiv);
         });
-
-        // Adjust layout based on screen size
-        const screenWidth = window.innerWidth;
-        const productWidth = 320; // Assuming a maximum width of 300px for each product, plus some margin
-        const maxProducts = Math.floor(screenWidth / productWidth);
-        productContainer.style.maxWidth = `${maxProducts * productWidth}px`;
       })
       .catch(error => console.error('Error:', error));
   </script>
 </body>
 </html>
+ 
