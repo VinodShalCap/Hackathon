@@ -1,0 +1,23 @@
+{
+    "PROD004": {
+      "discount": 10,
+      "proposed_price": 11.00,
+      "competator_price": 12.00
+    },
+    "PROD003": {
+      "discount": 11,
+      "proposed_price": 11.00,
+      "competator_price": 12.00
+    },
+    "PROD002": {
+      "discount": 12,
+      "proposed_price": 11.27,
+      "competator_price": 12.00
+    },
+    "PROD001": {
+      "discount": 13,
+      "proposed_price": 11.27,
+      "competator_price": 12.00
+    }
+  }
+  

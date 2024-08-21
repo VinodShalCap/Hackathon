@@ -1,0 +1,54 @@
+{
+    "products": [
+        {
+            "id": "prod001",
+            "name": "Hand Bag",
+            "price": 10.00,
+            "discount": 2,
+            "imageUrl": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+            "proposed_price": 11.27,
+            "competator_price": 11.50,
+            "strategy": "Strategy001"
+        },
+        {
+            "id": "prod002",
+            "name": "SSD Storage Device",
+            "price": 799.99,
+            "discount": 10,
+            "imageUrl": "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg",
+            "proposed_price": 89.99,
+            "competator_price": 11.50,            
+            "strategy": "Strategy001"
+        },
+        {
+            "id": "prod003",
+            "name": "4K Smart TV 55-inch",
+            "price": 549.99,
+            "discount": 20,
+            "imageUrl": "https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_.jpg",
+            "proposed_price": 89.99,
+            "competator_price": 11.50,
+            "strategy": "Strategy002"
+        },
+        {
+            "id": "prod004",
+            "name": "men's clothing",
+            "price": 15.99,
+            "discount": 5,
+            "imageUrl": "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
+            "proposed_price": 89.99,
+            "competator_price": 11.50,
+            "strategy": "Strategy002"
+        },
+        {
+            "id": "prod005",
+            "name": "Wireless Gaming Drive",
+            "price": 59.99,
+            "discount": 0,
+            "imageUrl": "https://fakestoreapi.com/img/61mtL65D4cL._AC_SX679_.jpg",
+            "proposed_price": 89.99,
+            "competator_price": 11.50,
+            "strategy": "Strategy002"
+        }
+    ]
+}
