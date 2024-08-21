@@ -1,0 +1,14 @@
+<prompt>
+\n\nHuman:Given the following data for a product, suggest an optimal price:
+Product Id: {Prod_ID}
+Product Name: {ProductName}
+Current Price: ${BasePrice}
+Provide a suggested price by applying 2% discount  without any explanation.
+Return your response in the following plain JSON format without any additional information:
+{{
+"product_id" : string,
+"suggested_price": float,
+"product_name" : string,
+}}
+\n\nAssistant:
+</prompt>

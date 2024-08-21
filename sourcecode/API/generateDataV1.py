@@ -52,7 +52,6 @@ def lambda_handler(event, context):
     #     </prompt>
     # """
     
-    
     # loop through products from DynamoDB
     productTable = dynamodb.Table('team-genai-innovators-cca-products')
     response = productTable.scan(
@@ -63,11 +62,10 @@ def lambda_handler(event, context):
     # Dictionary to store all product data
     all_product_data = {}
     
+    
     for product in products:
         
-        
         prompt_template = product.pop('Template')
-        
         
         dynamic_input = f"""
         
@@ -75,17 +73,18 @@ def lambda_handler(event, context):
         Product Name: {product['ProductName']}
         Current Price: ${product['BasePrice']}
 
-        Use ricing strategy ${product['Strategy']}
+        Use only pricing strategy {product['Strategy']}
         Return your response should be strictly in the following JSON format:
 
         {{
             "Prod_ID": "<String>",
             "SellPrice" : <float>,
-            "FinalPrice" : <float>
+            "FinalPrice" : <float>,
+            "Discount" : <float>
         }}
         """
         print(dynamic_input)
-
+        
         # Use the retrieve_and_generate method
         response_knowledgebase = client_bedrock_knowledgebase.retrieve_and_generate(
             input={
@@ -100,6 +99,8 @@ def lambda_handler(event, context):
             }
         )
         
+        
+        
         generated_text = response_knowledgebase['output']['text']
         print(f"Generated text for product {generated_text}")
 
@@ -112,7 +113,7 @@ def lambda_handler(event, context):
             
         # Store the response in the all_product_data dictionary
         all_product_data[product['Prod_ID']] = {
-            "discount": "0",
+            "discount": parsed_response['Discount'],
             "proposed_price": round(parsed_response['FinalPrice'], 2),
             "competator_price": 0,
         }

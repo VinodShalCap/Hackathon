@@ -65,16 +65,13 @@
           productDiv.appendChild(priceElement);
  
           const discountElement = document.createElement('p');
-          discountElement.textContent = `Discount: ${product.discount}%`;
+          discountElement.textContent = `Discount Applied: ${product.discount}`;
           productDiv.appendChild(discountElement);
  
           const proposedPriceElement = document.createElement('p');
           proposedPriceElement.textContent = `Proposed Price: $${product.proposed_price.toFixed(2)}`;
           productDiv.appendChild(proposedPriceElement);
- 
-          const competitorPriceElement = document.createElement('p');
-          competitorPriceElement.textContent = `Competitor Price: $${product.competator_price.toFixed(2)}`;
-          productDiv.appendChild(competitorPriceElement);
+          
 
           const priceStragegyElement = document.createElement('p');
           priceStragegyElement.textContent = `Strategy : ${product.Strategy}`;
