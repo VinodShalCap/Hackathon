@@ -46,8 +46,6 @@
         const productContainer = document.getElementById('product-container');
         const products = data.body;
  
-        
- 
         products.forEach(product => {
           const productDiv = document.createElement('div');
           productDiv.classList.add('product');
@@ -61,20 +59,19 @@
           productDiv.appendChild(imageElement);
  
           const priceElement = document.createElement('p');
-          priceElement.textContent = `Price: $${product.BasePrice.toFixed(2)}`;
+          priceElement.innerHTML = `<strong>Price: </strong>$${product.BasePrice.toFixed(2)}`;
           productDiv.appendChild(priceElement);
  
           const discountElement = document.createElement('p');
-          discountElement.textContent = `Discount Applied: $${product.discount}`;
+          discountElement.innerHTML = `<strong>Discount Applied:</strong> $${product.discount}`;
           productDiv.appendChild(discountElement);
  
           const proposedPriceElement = document.createElement('p');
-          proposedPriceElement.textContent = `Proposed Price: $${product.proposed_price.toFixed(2)}`;
+          proposedPriceElement.innerHTML = `<strong>Proposed Price: </strong> $${product.proposed_price.toFixed(2)}`;
           productDiv.appendChild(proposedPriceElement);
-          
-
+ 
           const priceStragegyElement = document.createElement('p');
-          priceStragegyElement.textContent = `<strong>Strategy : </strong>${product.Strategy}`;
+          priceStragegyElement.innerHTML = `<strong>Strategy : </strong>${product.Strategy}`;
           productDiv.appendChild(priceStragegyElement);
  
           productContainer.appendChild(productDiv);
